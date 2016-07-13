@@ -43,7 +43,8 @@ of courts in the Netherlands is returned by `cir_getCourtNames()`.
 
 ## Dutch registry with energy certificates for buildings
 
-The acronym *EPBD* seems to stem from the European [Energy Performance of Buildings Directive](https://ec.europa.eu/energy/en/topics/energy-efficiency/buildings).
+The acronym *EPBD* seems to stem from the European
+[Energy Performance of Buildings Directive](https://ec.europa.eu/energy/en/topics/energy-efficiency/buildings).
 
 Once you have received login credentials from the registry, a typical workflow 
 in R will be the following:
@@ -58,6 +59,10 @@ certificates <- epbd_downloadCertificates(postcode.min = 2491, postcode.max = 25
 certificates <- epbd_getLabelMutations(Sys.Date() - 1)
 ```
 
+This allows you to build dashboards like the one shown below.
+
+![Dashboard with energy efficiency labels for buildings in the city of the Hague](dashboard.png)
+
 ## Shapefiles
 
 The shapefiles for *Buurten*, *Wijken* and *Stadsdelen* are provided by Antoine 
@@ -68,6 +73,16 @@ have been tranformed to WGS84, but with a substantial error.
 These shapefiles now line up exactly with the
 [Wijk and buurtkaart](http://www.cbs.nl/nl-NL/menu/themas/dossiers/nederland-regionaal/publicaties/geografische-data/archief/2016/wijk-en-buurtkaart-2015.htm)
 from the CBS.
+
+# Installation
+
+This package is not available on CRAN. To install, use the *devtools* package as follows:
+
+```r
+install.package("devtools")
+install_github("bedatadriven/econometer")
+library("econometer")
+```
 
 # License
 
