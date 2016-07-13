@@ -1,0 +1,16 @@
+Package: econometer
+Version: 0.1
+Date: 2016-03-22
+Title: Econometer Gemeente Den Haag
+License: file LICENSE
+Description: A collection of maps, data and functions to support the Econometer
+    app for the gemeente Den Haag.
+Authors@R: person("Maarten-Jan", "Kallen", email = "mj@bedatadriven.com",
+  role = c("aut", "cre"))
+Imports:
+    xml2,
+    httr
+Suggests: sp
+SystemRequirements: python2.7
+LazyData: true
+RoxygenNote: 5.0.0
