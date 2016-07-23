@@ -178,6 +178,8 @@ epbd_extractLabelMutations <- function(xml) {
   
   datum <- as.Date(xml_text(xml_find_one(xml, ".//Mutatiedatum")), format = "%Y%m%d")
   
+  message("extracting specific details from XML for ", datum)
+
   changes <- xml_find_all(xml, ".//Mutatiebericht")
   
   do.call(rbind, lapply(changes, function(change) {
@@ -193,6 +195,9 @@ epbd_extractLabelMutations <- function(xml) {
     
     stuurcode <- getField("Stuurcode")
     
+    datestrings <- getField("PandVanMeting_opnamedatum")
+    dates <- as.Date(datestrings, format = "%Y%m%d")
+
     data.frame(id = as.numeric(getField("Mutatievolgnummer")),
                code = as.numeric(stuurcode),
                postcode = switch(stuurcode,
@@ -204,13 +209,8 @@ epbd_extractLabelMutations <- function(xml) {
                toevoeging = switch(stuurcode,
                                    "1" = getField("PandVanMeting_huisnummer_toev"),
                                    "2" = getField("Pand_huisnummer_toev")),
-               energieklasse = switch(stuurcode,
-                                      "1" = getField("PandVanMeting_energieklasse"),
-                                      "2" = NA_character_),
-               datum.meting = switch(stuurcode,
-                                     "1" = as.Date(getField("PandVanMeting_opnamedatum"),
-                                                   format = "%Y%m%d"),
-                                     "2" = NA_character_),
+               energieklasse = getField("PandVanMeting_energieklasse"),
+               datum.meting = dates,
                datum.mutatie = datum,
                stringsAsFactors = FALSE)
   }))
