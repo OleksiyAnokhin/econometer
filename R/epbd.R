@@ -274,7 +274,7 @@ epbd_downloadCertificates <- function(postcode.min = 1000L, postcode.max = 9999L
   stopifnot(postcode.min >= 1000, postcode.min < postcode.max, postcode.max < 10000L)
   
   # What's the first day of the current month?
-  TODAY <- as.POSIXlt(Sys.Date())
+  TODAY <- as.POSIXlt(Sys.Date(), format = "%Y-%m-%d", tz = "GMT")
   date <- as.Date(sprintf("%s-%s-01", TODAY$year + 1900, TODAY$mon + 1))
   
   body <- "<epbd:mutationType>Complete</epbd:mutationType>"
